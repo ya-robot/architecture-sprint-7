@@ -1,0 +1,39 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: prop-development
+  name: pod-reader
+rules:
+  - apiGroups: [""]
+    resources: ["pods"]
+    verbs: ["get", "list", "watch"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: prop-development
+  name: pod-writer
+rules:
+  - apiGroups: [""]
+    resources: ["pods"]
+    verbs: ["create", "update", "patch"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: prop-development
+  name: secret-reader
+rules:
+  - apiGroups: [""]
+    resources: ["secret"]
+    verbs: ["get", "list", "watch"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: prop-development
+  name: secret-writer
+rules:
+  - apiGroups: [""]
+    resources: ["secret"]
+    verbs: ["create", "update", "patch"]
