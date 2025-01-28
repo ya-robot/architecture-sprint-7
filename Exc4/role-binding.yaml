@@ -1,0 +1,61 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: read-pods
+  namespace: prop-development
+subjects:
+  - kind: ServiceAccount
+    name: devops
+    namespace: prop-development
+  - kind: ServiceAccount
+    name: development
+    namespace: prop-development
+  - kind: ServiceAccount
+    name: sre
+    namespace: prop-development
+roleRef:
+  kind: Role
+  name: pod-reader
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: write-pods
+  namespace: prop-development
+subjects:
+  - kind: ServiceAccount
+    name: devops
+    namespace: prop-development
+roleRef:
+  kind: Role
+  name: pod-writer
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: read-secret
+  namespace: prop-development
+subjects:
+  - kind: ServiceAccount
+    name: devops
+    namespace: prop-development
+roleRef:
+  kind: Role
+  name: secret-reader
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: write-secret
+  namespace: prop-development
+subjects:
+  - kind: ServiceAccount
+    name: devops
+    namespace: prop-development
+roleRef:
+  kind: Role
+  name: secret-writer
+  apiGroup: rbac.authorization.k8s.io

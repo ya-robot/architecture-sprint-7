@@ -1,0 +1,29 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-specific-traffic
+  namespace: default
+spec:
+  podSelector:
+    matchLabels:
+      app: back-end-app
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels:
+              app: front-end-app # Allow traffic from front-end-app
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-specific-traffic
+  namespace: default
+spec:
+  podSelector:
+    matchLabels:
+      app: admin-back-end-app
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels:
+              app: admin-front-end-app # Allow traffic from admin-front-end-app
